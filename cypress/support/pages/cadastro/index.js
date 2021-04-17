@@ -1,5 +1,11 @@
+/// <reference types="cypress" />
+
 const faker = require('faker');  
+
 const el = require('./elements').ELEMENTS
+
+import Routes from '../../routes'
+
 class Cadastro {  
 
     acessarPaginaCadastrarNovoRegistro(){
@@ -19,6 +25,19 @@ class Cadastro {
         cy.get(el.buttonSubmit).click();
     }
 
+    verificarSeOCadastroFoiRealizadoComSucesso() {
+        cy.wait(`@${Routes.as.postUsers}`).then((postUsers) => {
+            expect(postUsers.status).to.eq(200)
+        });
+
+        cy.wait(`@${Routes.as.getTags}`).then((getTags) => {
+            expect(getTags.status).to.eq(200)
+        });
+
+        cy.wait(`@${Routes.as.getFeed}`).then((getFeed) => {
+            expect(getFeed.status).to.eq(200)
+        });
+    }
 
 }
 

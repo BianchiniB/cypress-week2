@@ -9,5 +9,6 @@ context('Cadastro', () => {
         cadastro.submeterFormulario();
         
         // Verificação
+        cadastro.verificarSeOCadastroFoiRealizadoComSucesso();
     });
 });
